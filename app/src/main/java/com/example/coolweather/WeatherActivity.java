@@ -42,6 +42,8 @@ public class WeatherActivity extends AppCompatActivity {
 
     private Button navButton;
 
+    private Button etButton;
+
     private TextView titleCity;
 
     private TextView titleUpdateTime;
@@ -93,6 +95,7 @@ public class WeatherActivity extends AppCompatActivity {
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navButton = (Button) findViewById(R.id.nav_button);
+        etButton = (Button) findViewById(R.id.et_button);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherString = prefs.getString("weather", null);
         if (weatherString != null) {
@@ -118,6 +121,15 @@ public class WeatherActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+        etButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WeatherActivity.this,CollectionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         String bingPic = prefs.getString("bing_pic", null);
         if (bingPic != null) {
             Glide.with(this).load(bingPic).into(bingPicImg);
